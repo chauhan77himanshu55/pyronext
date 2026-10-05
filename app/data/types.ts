@@ -13,6 +13,7 @@ export interface BlogPost {
   title: string;
   date: string;
   dateISO: string;
+  updatedISO?: string;
   category: string;
   readTime: string;
   author: string;

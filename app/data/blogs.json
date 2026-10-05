@@ -1,5 +1,219 @@
 [
   {
+    "slug": "superintelligence-enterprise-systems-readiness",
+    "title": "Superintelligence Won’t Arrive as a Chatbot: What Enterprise Systems Must Be Ready For",
+    "date": "October 5, 2026",
+    "dateISO": "2026-10-05",
+    "category": "AI & Enterprise Architecture",
+    "readTime": "8 min read",
+    "author": "Pyronite Engineering Team",
+    "label": "NEW / AI Architecture",
+    "excerpt": "What happens when an AI system can act across your enterprise, not just answer questions? A practical readiness guide for developers, Liferay teams, and technology leaders.",
+    "metaDescription": "Explore enterprise AI readiness beyond chatbots: agent permissions, Liferay DXP integrations, human approvals, audit trails, and safe autonomous workflows.",
+    "metaKeywords": "superintelligence enterprise readiness, enterprise AI agents, agentic AI architecture, Liferay DXP AI integration, AI governance, AI agent security, human in the loop, enterprise API security, AI audit trails, Pyronite Tech",
+    "tags": [
+      "Enterprise AI",
+      "Superintelligence",
+      "Liferay DXP",
+      "AI Agents",
+      "Security",
+      "Architecture"
+    ],
+    "content": [
+      {
+        "type": "image",
+        "src": "/blogs/superintelligence-enterprise-systems-readiness/hero.webp",
+        "alt": "An abstract intelligence connected to enterprise portals, databases, and secure gateways",
+        "caption": "The next AI interface may be a workflow that spans systems—not another chat window."
+      },
+      {
+        "type": "paragraph",
+        "html": "Picture a customer asking why a claim is stuck. A chatbot summarizes a help article. A more capable AI system checks the claim, spots a missing document, requests it, updates a case, and tells the customer what happens next. The second experience crosses identity, data, policy, and transaction boundaries. That is where enterprise architecture becomes the story."
+      },
+      {
+        "type": "paragraph",
+        "html": "<strong>Superintelligence is hypothetical, not a product you can install today.</strong> But increasingly capable AI agents already make this a useful design question: if an AI could plan and carry out multi-step work, would your systems let it do the right thing—and prevent the wrong thing?"
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The important shift: from answering to acting"
+      },
+      {
+        "type": "paragraph",
+        "html": "A chat interface is a surface. The meaningful change is agency: software that can select tools, retrieve context, decide a next step, and attempt an action. A great answer can still be wrong; a wrong action can change a bank account, expose a record, or trigger a production deployment."
+      },
+      {
+        "type": "paragraph",
+        "html": "Consider a request to “resolve every overdue supplier invoice.” An agent might read an ERP, compare purchase orders, message approvers, and submit payments. The language model is only one component. The enterprise risk lives in the connections between those components."
+      },
+      {
+        "type": "list",
+        "ordered": false,
+        "items": [
+          "<strong>Read:</strong> Which records may this actor see, and for which purpose?",
+          "<strong>Reason:</strong> Is the context complete, current, and traceable to a source?",
+          "<strong>Act:</strong> Which operations are allowed, under what limits and approvals?",
+          "<strong>Recover:</strong> Can operators inspect, stop, and reverse an action?"
+        ]
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Five capabilities your architecture needs before autonomous workflows"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "1. Identity that survives every hop"
+      },
+      {
+        "type": "paragraph",
+        "html": "A user’s sign-in is not blanket permission for an agent to act everywhere. Pass identity and purpose through the workflow, use short-lived scoped credentials, and enforce authorization at the system that owns each resource. Never assume that hiding a button in a portal protects the underlying API."
+      },
+      {
+        "type": "image",
+        "src": "/blogs/superintelligence-enterprise-systems-readiness/permission-boundary.webp",
+        "alt": "AI workflow passing through identity, scope, and approval gates before reaching enterprise data",
+        "caption": "Each action needs its own permission boundary, not a single all-access agent credential."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "2. APIs that describe safe actions"
+      },
+      {
+        "type": "paragraph",
+        "html": "An endpoint that accepts arbitrary updates is hard to govern. Prefer narrow, typed operations—such as “propose a refund” rather than “update customer record”—with validation, idempotency keys, rate limits, and explicit failure responses. Keep read-only tools separate from write tools. Treat retrieved documents and tool output as untrusted input: a prompt injection inside a document must not become an instruction to execute."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "3. Data with provenance, not just relevance"
+      },
+      {
+        "type": "paragraph",
+        "html": "Retrieval can find a plausible answer without proving it is current or authorized. Track the source, freshness, tenant, and access classification of each piece of context. If a CRM and an ERP disagree, the system should expose the conflict rather than confidently invent a single truth."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "4. Approval at the point of consequence"
+      },
+      {
+        "type": "paragraph",
+        "html": "Human oversight is not a checkbox at the start of a process. Set thresholds by impact: a draft response may be automatic; a payment, role change, or deletion may require an authenticated approver who can see the evidence and proposed action. Timeouts and rejected approvals must fail closed."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "5. A control plane operators can trust"
+      },
+      {
+        "type": "paragraph",
+        "html": "Log who requested the work, which model and tools were used, which data sources were consulted, what action was proposed, who approved it, and what changed. Add monitoring, budgets, circuit breakers, and a way to disable a tool or workflow quickly. Design compensating actions for operations that cannot simply be rolled back."
+      },
+      {
+        "type": "image",
+        "src": "/blogs/superintelligence-enterprise-systems-readiness/control-plane.webp",
+        "alt": "Governance layer with approvals, audit trails, and emergency stop above enterprise modules",
+        "caption": "Observability and intervention must be built into the workflow, not added after launch."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Where Liferay DXP fits—and where it does not"
+      },
+      {
+        "type": "paragraph",
+        "html": "For Liferay teams, the portal can be an effective experience and governance entry point: users sign in, view contextual content, submit requests, and review proposed actions. Headless APIs and Client Extensions can connect these experiences to external AI services without embedding every experiment in the portal runtime. Permissions, workflows, and integration boundaries still need to be designed end to end; a portal alone does not make an agent safe."
+      },
+      {
+        "type": "paragraph",
+        "html": "A practical pattern is <strong>Liferay experience → scoped service API → policy and approval layer → system of record</strong>. Keep the model outside the trust boundary: it proposes a structured action, while deterministic services validate and execute it. Re-check authorization at the final API, not only when the workflow begins."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "A developer’s first experiment: the reversible workflow"
+      },
+      {
+        "type": "paragraph",
+        "html": "Do not begin with “let the agent run the company.” Choose a narrow, measurable use case—for example, drafting a service-case resolution for an employee to approve."
+      },
+      {
+        "type": "list",
+        "ordered": true,
+        "items": [
+          "Map the records and permissions needed for one request.",
+          "Give the agent read-only access first; record the sources it used.",
+          "Require a typed proposed action and validate it against business rules.",
+          "Put an approver between proposal and any write operation.",
+          "Test expired credentials, cross-tenant records, injected instructions, duplicate requests, and unavailable downstream systems.",
+          "Measure not only task completion, but denied actions, human corrections, latency, and recovery time."
+        ]
+      },
+      {
+        "type": "paragraph",
+        "html": "If that workflow cannot explain what it saw and why it acted, expanding its autonomy is not the next milestone. Improving the system around it is."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "Frequently asked questions"
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Is superintelligence already here?"
+      },
+      {
+        "type": "paragraph",
+        "html": "No established benchmark or consensus shows that artificial superintelligence exists today. This article uses it as a planning lens for systems that may become more capable; the engineering controls also matter for today’s narrower AI agents."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Does enterprise AI require replacing legacy systems?"
+      },
+      {
+        "type": "paragraph",
+        "html": "Not necessarily. Start with well-defined APIs and an integration layer that limits what an agent can read or change. Modernize the highest-risk coupling points first rather than exposing a legacy database directly to an AI tool."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "Can Liferay DXP serve as the frontend for AI agents?"
+      },
+      {
+        "type": "paragraph",
+        "html": "Yes, it can host user-facing journeys and approval experiences while external services handle model calls and tool orchestration. Apply permissions consistently across the portal, service layer, and systems of record; implementation details depend on your Liferay version and deployment architecture."
+      },
+      {
+        "type": "heading",
+        "level": 3,
+        "text": "What is the first security control to implement?"
+      },
+      {
+        "type": "paragraph",
+        "html": "Scope the agent’s access to a single use case and separate read from write permissions. Pair that with server-side authorization and an audit trail before allowing consequential actions."
+      },
+      {
+        "type": "heading",
+        "level": 2,
+        "text": "The real readiness question"
+      },
+      {
+        "type": "paragraph",
+        "html": "The most useful question is not “When will superintelligence arrive?” It is <strong>“If an AI system became more capable tomorrow, would our architecture keep it accountable?”</strong> Teams that can answer yes will have done the unglamorous work: clear contracts, governed data, bounded permissions, meaningful approvals, and observable operations."
+      },
+      {
+        "type": "paragraph",
+        "html": "<em>Exploring enterprise AI on Liferay or across a complex stack? <a href=\"/connect\">Talk to the Pyronite Tech team</a> about designing a safe, testable first workflow.</em>"
+      }
+    ]
+  },
+  {
     "slug": "architectural-trap-enterprise-modernization",
     "title": "The Architectural Trap: Why Enterprise Modernization Stalls Before It Starts",
     "date": "September 30, 2026",

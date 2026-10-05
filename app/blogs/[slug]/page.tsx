@@ -25,6 +25,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = blogs.find((b) => b.slug === slug);
   if (!post) return {};
+  const heroImage = post.content.find((block) => block.type === "image");
+  const socialImage = heroImage?.src ?? "/logo.png";
   return {
     title: post.title,
     description: post.metaDescription,
@@ -39,13 +41,13 @@ export async function generateMetadata({
       publishedTime: post.dateISO,
       authors: [post.author],
       tags: post.tags,
-      images: [{ url: "/logo.png", alt: "Pyronite" }],
+      images: [{ url: socialImage, alt: heroImage?.alt ?? "Pyronite" }],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.metaDescription,
-      images: ["/logo.png"],
+      images: [socialImage],
     },
   };
 }

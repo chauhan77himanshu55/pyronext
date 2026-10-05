@@ -11,61 +11,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/standard`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/philosophy`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${BASE_URL}/services`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/solutions`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/faq`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/hire-liferay-developers`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/connect`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/blogs`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/terms`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.5,
     },
@@ -73,21 +63,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const blogRoutes: MetadataRoute.Sitemap = blogs.map((post) => ({
     url: `${BASE_URL}/blogs/${post.slug}`,
-    lastModified: new Date(post.dateISO),
+    lastModified: new Date(post.updatedISO ?? post.dateISO),
     changeFrequency: "monthly",
     priority: 0.85,
   }));
 
   const serviceRoutes: MetadataRoute.Sitemap = services.map((service) => ({
     url: `${BASE_URL}/services/${service.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.85,
   }));
 
   const solutionRoutes: MetadataRoute.Sitemap = solutions.map((solution) => ({
     url: `${BASE_URL}/solutions/${solution.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.85,
   }));

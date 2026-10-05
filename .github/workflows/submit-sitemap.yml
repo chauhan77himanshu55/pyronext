@@ -1,0 +1,43 @@
+name: Submit production sitemap to Google Search Console
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: submit-production-sitemap
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Search Console configuration
+        id: config
+        env:
+          CREDENTIALS: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -z "$CREDENTIALS" ]; then
+            echo '::warning::Set GSC_SERVICE_ACCOUNT_JSON and grant its service account access to the Search Console property to enable automatic submission.'
+            echo 'configured=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'configured=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: google-github-actions/auth@v2
+        id: auth
+        if: steps.config.outputs.configured == 'true'
+        with:
+          credentials_json: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/webmasters
+      - name: Wait for production sitemap and submit
+        if: steps.config.outputs.configured == 'true'
+        env:
+          GSC_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+          GSC_SITE_URL: ${{ vars.GSC_SITE_URL }}
+        run: node scripts/submit-sitemap.mjs
